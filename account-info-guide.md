@@ -1,13 +1,39 @@
-# Casper Network Validator Self-Identification Guide
+# Casper Network Validator Account Self-Identification Guide
 
 ## Overview
 This guide explains the process of self-identification for Casper Network validators, including how to set up and maintain your validator's public information through the account-info.casper.json file.
 
+## About This Guide
+This is a comprehensive guide designed for validators who want to understand every aspect of the self-identification process. It includes detailed explanations, common questions, and troubleshooting steps to help you implement the account-info standard correctly.
+
+For the official, concise implementation guide, please refer to the [original documentation](https://github.com/make-software/casper-account-info-contract/wiki/Self-Identification-Steps-for-the-Casper-Mainnet-Validators) by Muhammet Kara.
+
 ## Prerequisites
-- A running Casper Network validator node
-- A public website domain
-- Access to your server's file system
-- Validator's secret key
+Before starting the self-identification process, ensure you have:
+
+1. **Validator Node**
+   - A running Casper Network validator node
+   - Validator's secret key
+   - Access to your server's file system
+
+2. **Website Requirements**
+   - A public website domain
+   - Ability to create and modify files on your web server
+   - Proper file permissions for the `.well-known` directory
+
+3. **Required Software**
+   To run the commands in this guide, you need to have a recent version of `casper-client` and `jq` installed. Run these commands on your node:
+
+   ```bash
+   sudo apt update
+   sudo apt install casper-client jq
+   ```
+
+   Verify the installation:
+   ```bash
+   casper-client --version
+   jq --version
+   ```
 
 ## Process Overview
 1. [Initial Setup](#initial-setup)
@@ -24,6 +50,12 @@ Create the following directory structure on your web server:
     └── account-info.casper.json
 ```
 
+### Live Examples
+Since the account-info.casper.json file must be publicly accessible, you can view examples from active validators on the network:
+- [Official Template](https://casper-account-info-example.make.services/.well-known/casper/account-info.casper.json) - Reference implementation with all possible fields
+
+- [Casper Delegation](https://casperdelegation.com/.well-known/casper/account-info.casper.json) - Example of a validator using the account info schema
+
 ### File Location
 The account-info.casper.json file must be publicly accessible at:
 ```
@@ -34,9 +66,28 @@ https://[YOUR-DOMAIN]/.well-known/casper/account-info.casper.json
 ### JSON File Requirements
 - Must be valid JSON
 - Must contain your validator's public key
-- Can be placed in either:
-  - `nodes` section
-  - `affiliated accounts` section
+- Must be publicly accessible at the specified path
+
+### JSON Template and Validation
+1. Download the template:
+   - Use the [official template](https://casper-account-info-example.make.services/.well-known/casper/account-info.casper.json) as your starting point
+   - Right-click and select "Save Link As..." to download the sample file
+
+2. Validate your JSON:
+   - Use [JSON Schema Validator](https://www.jsonschemavalidator.net/s/ltMuxIEq) to validate against the standard schema
+   - Use [JSONLint](https://jsonlint.com/) to check JSON validity
+   - You should see "No errors found. JSON validates against the schema" message
+
+3. Important Validation Notes:
+   - Invalid JSON files will not be displayed correctly
+   - Always validate before publishing
+   - Check all required fields are present
+   - Ensure all URLs are accessible
+
+4. Example Structure:
+   - See the [official template](https://casper-account-info-example.make.services/.well-known/casper/account-info.casper.json) for the complete JSON structure
+   - Replace all placeholder values with your validator's information
+   - Keep the same structure and formatting
 
 ## Transaction Process
 ### Setting the URL
