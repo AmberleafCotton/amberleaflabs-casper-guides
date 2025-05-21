@@ -87,11 +87,50 @@ Q: Is the `.well-known/casper/account-info.casper.json` path fixed by the blockc
 .well-known/validator1/account-info.casper.json
 .well-known/validator2/account-info.casper.json
 ```
--Placeholder Answer-
+A: Yes, the path `.well-known/casper/account-info.casper.json` is fixed and cannot be modified. You must use this exact path structure for the blockchain to properly verify your validator information.
 
 ### Post-Transaction File Management
 Q: After the transaction is completed and the data is fetched by the blockchain, can the files be deleted? Can the same process be repeated for another validator using the same domain?
--Placeholder Answer-
+A: No, the files must remain accessible at all times. The middleware periodically checks these files to verify the information. However, you don't need separate files for multiple validators - you can have multiple nodes listed in the same JSON file.
+
+### Multiple Validators Configuration
+Q: How do I configure multiple validators using the same domain?
+A: You should extend the `nodes` array in your existing `account-info.casper.json` file. Each validator needs:
+1. Its own entry in the nodes array
+2. A separate set-url transaction
+3. A unique description within the same JSON file
+
+### Security and Verification
+Q: What prevents someone from listing other people's nodes as their own in the JSON file?
+A: Each node must submit its own set-url transaction signed with its private key. Without this transaction, the node's information won't be verified or displayed, even if it's listed in the JSON file.
+
+### Transaction Requirements
+Q: Do I need to submit a transaction for each node listed in the JSON file?
+A: Yes, each node must submit its own set-url transaction signed with its private key. This is required for:
+- Nodes listed in the `nodes` array
+- Accounts listed in the `affiliated accounts` section
+Without the corresponding transaction, the information won't be verified or displayed.
+
+### Command Updates
+Q: Is there an updated command for the set-url transaction?
+A: The old command (put-deploy) still works, though it may show a deprecation warning. The updated command (put-transaction) is not yet a high priority as the old command remains functional.
+
+### JSON File Structure
+Q: How should I structure the JSON file for multiple validators?
+A: You should extend the `nodes` array in your existing file. Do not create separate files or copy-paste the entire JSON structure. Each node should have its own entry in the array with its unique description and information.
+
+### Verification Process
+Q: How is the information verified?
+A: The process involves multiple steps:
+1. The JSON file must be publicly accessible at the correct path
+2. Each node must submit a set-url transaction
+3. The middleware periodically checks the file
+4. Only information from nodes that have submitted transactions is displayed
+
+### Example Implementations
+For reference implementations, check:
+- https://casper-account-info-example.make.services/.well-known/casper/account-info.casper.json
+- https://casperdelegation.com/.well-known/casper/account-info.casper.json
 
 ## Additional Resources
 - [Casper Network Documentation](https://docs.casper.network/)
