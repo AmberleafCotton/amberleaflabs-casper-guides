@@ -139,5 +139,5 @@ For reference implementations, check:
 
 ## Support
 For additional support:
-- Join the [Casper Discord](https://discord.gg/casperblockchain)
+- Join the [Casper Discord](https://discord.gg/caspernetwork)
 - Visit the [Casper Forum](https://forums.casperlabs.io/) 
