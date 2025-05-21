@@ -14,7 +14,6 @@ Before starting the self-identification process, ensure you have:
 1. **Validator Node**
    - A running Casper Network validator node
    - Validator's secret key
-   - Access to your server's file system
 
 2. **Website Requirements**
    - A public website domain
