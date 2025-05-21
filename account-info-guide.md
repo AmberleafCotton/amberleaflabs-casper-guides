@@ -11,7 +11,7 @@ For the official, concise implementation guide, please refer to the [original do
 ## Prerequisites
 Before starting the self-identification process, ensure you have:
 
-1. **Validator Node**
+1. <span style="color: #FFA500">**Validator Node**</span>
    - A running Casper Network validator node
    - Validator's secret key
    - Access to your server's file system
