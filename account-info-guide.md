@@ -13,8 +13,6 @@ For the official, concise implementation guide, please refer to the [original do
 - A running Casper Network validator node
 - Validator's secret key
 - A public website domain
-- Ability to create and modify files on your web server
-- Proper file permissions for the `.well-known` directory
 
 ### Required Software
 To run the commands in this guide, you need to have a recent version of `casper-client` and `jq` installed. Run these commands on your node:
@@ -33,7 +31,7 @@ jq --version
 ## Setup Process
 
 ### 1. Directory Structure Setup
-✅ **TASK**: Create the following directory structure on your web server:
+✅ **TODO**: Create the following directory structure on your web server:
 ```
 .well-known/
 └── casper/
@@ -41,7 +39,7 @@ jq --version
 ```
 
 ### 2. JSON File Creation
-✅ **TASK**: Create your account-info.casper.json file
+✅ **TODO**: Create your account-info.casper.json file
 
 📝 **Reference Examples**:
 - [Official Template](https://casper-account-info-example.make.services/.well-known/casper/account-info.casper.json) - Complete reference implementation
@@ -54,13 +52,13 @@ jq --version
 - Validate against the [JSON Schema](https://www.jsonschemavalidator.net/s/ltMuxIEq)
 
 ### 3. File Deployment
-✅ **TASK**: Deploy your file to the correct location:
+✅ **TODO**: Deploy your file to the correct location:
 ```
 https://[YOUR-DOMAIN]/.well-known/casper/account-info.casper.json
 ```
 
 ### 4. Transaction Submission
-✅ **TASK**: Submit the set_url transaction:
+✅ **TODO**: Submit the set_url transaction:
 ```bash
 sudo -u casper casper-client put-deploy \
     --chain-name "casper" \
@@ -72,13 +70,28 @@ sudo -u casper casper-client put-deploy \
     --session-arg=url:"string='https://YOUR-DOMAIN'"
 ```
 
-## Multiple Validators Setup
-
 ### Process Overview
-✅ **TASK**: For each additional validator:
+✅ **TODO**: For each additional validator:
 1. Add a new entry to the `nodes` array in your existing JSON file
 2. Submit a new set_url transaction for each validator
 3. Verify the information is displayed correctly
+
+### 5. Verification
+✅ **TODO**: Verify the account info for your validator:
+
+1. Clone the Casper Account Info Contract repo:
+```bash
+cd ~
+git clone https://github.com/make-software/casper-account-info-contract.git
+```
+
+2. Get the account information file content:
+```bash
+cd ~/casper-account-info-contract/tools
+./get-account-info.sh --node-address=127.0.0.1 --contract-hash=fb8e0215c040691e9bbe945dd22a00989b532b9c2521582538edb95b61156698 --public-key=$(sudo -u casper cat /etc/casper/validator_keys/public_key_hex) | jq
+```
+
+You should see the content of your account info file as the output of this command. You can now proceed to CSPR.Live to see your details displayed there: https://cspr.live/validator/YOUR-PUBLIC-KEY
 
 ## Best Practices
 📝 **Important Notes**:
