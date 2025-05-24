@@ -6,13 +6,13 @@ Any feedback is very welcomed.
 These guides are aimed for casper network users and new validators.
 
 ### Quick Setup Guides
-- [Validator Self-Identification Guide](account-info-guide.md) - Learn how to set up and maintain your validator's public information [In Progress]
-- [Validator Setup Guide](validator-setup-guide.md) - Complete guide for setting up and running a Casper Network validator node [In Progress]
+- [Validator Self-Identification Guide](account-info-guide.md) - Learn how to set up and maintain your validator's public information 
+- [Validator Setup Guide](validator-setup-guide.md) - Complete guide for setting up and running a Casper Network validator node
 
 ### How-To-Use Casper
 - [Staking Guide](staking-guide.md) - Learn how to stake your CSPR tokens with validators [In Progress]
 
 ### Useful Verified Links
-- [Casper Network Discord](https://discord.gg/caspernetwork) - Official Casper Network community and support
+- [Casper Network Discord](https://discord.gg/caspernetwork) - Official Casper Network Community and Support
 - [Casper Network Telegram](https://t.me/casperblockchain) - Official Casper Network Telegram channel
-- [CSPR.live Explorer](https://cspr.live/) - Official Casper Network block explorer
+- [CSPR.live Explorer](https://cspr.live/) - Official Casper Network Block Explorer
